@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>week8.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<!--
+backgroundColor: #191a2e
+color: skyblue
+-->
+<h1 id="code-and-document-management">Code and Document Management</h1>
+<p>An introduction to code and document management by <a href="http://www.yxliu.group">Dr. Yi-Xin Liu</a> at Fudan University (lyx@fudan.edu.cn).</p>
+<p>This is a part of the course: <em>Road to Scientific Research: Powerful Computer Applications</em> (XDSY118019.01).</p>
+<p>Lecture date: 2023.10.26</p>
+<hr>
+<!-- _paginate: true -->
+<h2 id="code-management">Code Management</h2>
+<p>Tracking the history of modifications to a code project is extremely important. You can do it manually, like:</p>
+<pre class="hljs"><code><div>$ ls
+mycode_v1.py
+mycode_v2.py
+mycode_v2_with_some_new_implementations.py
+mycode_v3_along_original.py
+mycode_v3_with_some_new_implementations.py
+mycode_v3_with_other_improvements.py
+mycode_GPU.py
+</div></code></pre>
+<p>Or like this:</p>
+<pre class="hljs"><code><div>mycode_20220606.py  mycode_20220707.py  mycode_20220808.py  ...
+</div></code></pre>
+<hr>
+<h2 id="or">Or</h2>
+<p><img src="file:///workspaces/XDSY118019/slides/finaldoc.gif" alt=""></p>
+<hr>
+<h3 id="failure-of-manual-management">Failure of Manual Management</h3>
+<p>Soon you will discover that the manual way to track the version of your code is:</p>
+<ul>
+<li>tedious</li>
+<li>painful</li>
+</ul>
+<p>It is also not scalable: when you have multiple files to track, the history of your project quickly become a mess!</p>
+<hr>
+<h3 id="version-control-system">Version Control System</h3>
+<ul>
+<li>In modern days, we will use a version control system to do code and document management.</li>
+<li><strong>Git</strong> is the most popular version control system.</li>
+</ul>
+<p><img src="file:///workspaces/XDSY118019/slides/git.png" alt="Git and GitHub"></p>
+<hr>
+<h3 id="getting-started-with-git">Getting Started with Git</h3>
+<ul>
+<li><a href="https://youtu.be/8JJ101D3knE">Git Tutorial for Beginners: Learn Git in 1 Hour</a> (1:09:13)</li>
+</ul>
+<video height="500" controls>
+    <source src="git.mp4">
+</video>
+<hr>
+<h3 id="demo-and-exercises-for-git">Demo and Exercises for Git</h3>
+<ul>
+<li>Installation</li>
+<li>Configuration</li>
+<li>Initializing a repo</li>
+<li>Staging and committing</li>
+<li>Status, log and checkout</li>
+<li>Create a branch</li>
+</ul>
+<p>Learning material: <a href="https://gitbookdown.dallasdatascience.com/index.html">Git &amp; GitHub Tutorial for Scientists</a></p>
+<hr>
+<h3 id="git-installation-and-configuration">Git: Installation and Configuration</h3>
+<ul>
+<li>Installation
+<ul>
+<li>MacOS: goto <a href="https://www.git-scm.com/downloads">the download page</a> of git official website.</li>
+<li>Windows: goto <a href="https://github.com/git-for-windows/git">git for windows</a> and download the latest version.</li>
+<li>After installation, check the version of git</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>$ git --version
+</div></code></pre>
+<ul>
+<li>Configuration</li>
+</ul>
+<pre class="hljs"><code><div>$ git config --global user.name <span class="hljs-string">"Yixin Liu"</span>
+$ git config --global user.email <span class="hljs-string">"lyx@fudan.edu.cn"</span>
+$ git config --global core.editor <span class="hljs-string">"code"</span>
+$ git config --global -e
+
+$ git config --global core.autocrlf input  <span class="hljs-comment"># Mac/Linux</span>
+$ git config --global core.autocrlf <span class="hljs-literal">true</span>  <span class="hljs-comment"># Windows</span>
+</div></code></pre>
+<hr>
+<h3 id="git-initialization">Git: Initialization</h3>
+<ul>
+<li>Initializing a repository (repo)</li>
+</ul>
+<pre class="hljs"><code><div>$ <span class="hljs-built_in">cd</span> ~/projects/gittest
+$ git init
+</div></code></pre>
+<ul>
+<li>Check the current status of git</li>
+</ul>
+<pre class="hljs"><code><div>$ git status
+</div></code></pre>
+<hr>
+<h3 id="git-staging-and-committing">Git: Staging and Committing</h3>
+<ul>
+<li>Staging</li>
+</ul>
+<pre class="hljs"><code><div>$ touch README.md
+$ git add README.md
+</div></code></pre>
+<ul>
+<li>Committing</li>
+</ul>
+<pre class="hljs"><code><div>$ git ci -m <span class="hljs-string">"First commit."</span>
+</div></code></pre>
+<hr>
+<h3 id="git-log-and-checkout">Git: Log and Checkout</h3>
+<ul>
+<li>List commit logs</li>
+</ul>
+<pre class="hljs"><code><div>$ git <span class="hljs-built_in">log</span>
+$ git <span class="hljs-built_in">log</span> --oneline
+</div></code></pre>
+<ul>
+<li>Checkout a specific commit: in a state of &quot;detached HEAD&quot;, use it carefully.</li>
+</ul>
+<pre class="hljs"><code><div>$ git checkout 8eb8716
+</div></code></pre>
+<ul>
+<li>Checkout a commit using TAG</li>
+</ul>
+<pre class="hljs"><code><div>$ git tag
+$ git checkout v0.3.0
+</div></code></pre>
+<hr>
+<h3 id="git-branching">Git: Branching</h3>
+<ul>
+<li>Create and checkout new branch</li>
+</ul>
+<pre class="hljs"><code><div>$ git checkout -b a_new_feature
+</div></code></pre>
+<ul>
+<li>List all branches</li>
+</ul>
+<pre class="hljs"><code><div>$ git branch
+</div></code></pre>
+<ul>
+<li>Switch among branches</li>
+</ul>
+<pre class="hljs"><code><div>$ git checkout master
+$ git branch
+$ git checkout a_new_feature
+$ git switch master
+</div></code></pre>
+<hr>
+<h3 id="githubcom">Github.com</h3>
+<p>The main purpose of <a href="https://github.com/">GitHub.com</a> is to facilitate the version control and issue tracking aspects of software development.</p>
+<ul>
+<li>Labels, milestones, responsibility assignment, and a search engine are available for issue tracking.</li>
+<li>For version control, Git (and by extension GitHub.com) allows pull requests (<strong>PR</strong>) to propose changes to the source code.</li>
+<li>Users with the ability to review the proposed changes can see a diff of the requested changes and approve them.</li>
+</ul>
+<hr>
+<h3 id="githubcom-service">Github.com Service</h3>
+<ul>
+<li>Github.com hosts <strong>Git</strong> repositories (repos).</li>
+<li>Projects on GitHub.com can be accessed and managed using the standard Git command-line interface.</li>
+<li>All standard Git commands work with it.</li>
+<li>GitHub.com also allows users to browse public repositories on the site.</li>
+<li>Multiple desktop clients and Git plugins are also available.</li>
+<li>The site provides social networking-like functions such as feeds, followers, wikis and a social network graph to display how developers work on their versions (&quot;forks&quot;) of a repository and what fork (and branch within that fork) is newest.</li>
+</ul>
+<hr>
+<h3 id="demo-and-exercises-for-github">Demo and Exercises for Github</h3>
+<p>Goto <a href="https://github.com/">Github.com</a> and do the following:</p>
+<ul>
+<li>Create an account if you do not have one.</li>
+<li>Create a new public repo.</li>
+<li>Push your local Git repo to Github.com.</li>
+<li>Create a new branch in your local Git repo.</li>
+<li>Push your local Git repo to Github.com again.</li>
+<li>Create a PR for that branch in Github.com.</li>
+<li>Merge the PR in Github.com</li>
+<li>Pull the merged repo on Github.com to update your local repo.</li>
+</ul>
+<hr>
+<h2 id="reference-manager">Reference Manager</h2>
+<p><a href="https://en.wikipedia.org/wiki/Reference_management_software">Reference management software</a> is software for scholars and authors to use for recording and utilizing bibliographic citations (references) as well as managing project references. Once a citation has been recorded, it can be used time and again in generating bibliographies, such as lists of references in scholarly books, articles and essays. The development of reference management packages has been driven by the rapid expansion of scientific literature.</p>
+<p>Check out a list of <a href="https://en.wikipedia.org/wiki/Comparison_of_reference_management_software">reference managers and a comparison of them</a>.</p>
+<hr>
+<h3 id="paperpile">Paperpile</h3>
+<p><a href="https://paperpile.com/?welcome">Paperpile</a> is a online software for no-fuss reference management on the web. Paperpile enable us manage our research library right in the browser:</p>
+<ul>
+<li>Save time with a smart, intuitive interface</li>
+<li>Access PDFs from anywhere</li>
+<li>Add citations and bibliographies to Google Docs</li>
+</ul>
+<p>Note: Paperpile is not free.</p>
+<br>
+<p><strong>Demonstration:</strong> go to <a href="https://paperpile.com/?welcome">Paperpile</a>.</p>
+<hr>
+<h3 id="zotero">Zotero</h3>
+<p><a href="https://www.zotero.org/">Zotero</a> is, at the most basic level, a reference manager. It is designed to store, manage, and cite bibliographic references, such as books and articles. In Zotero, each of these references constitutes an item. More broadly, Zotero is a powerful tool for collecting and organizing research information and sources.</p>
+<p>Note: Zotero is free.</p>
+<br>
+<p><strong>Demonstration:</strong> go to <a href="https://www.zotero.org/">Zotero</a> and <a href="https://www.zotero.org/download/">install Zotero</a> to your computer.</p>
+
+</body>
+</html>
